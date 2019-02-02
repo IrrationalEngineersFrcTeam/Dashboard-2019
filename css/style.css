@@ -1,0 +1,35 @@
+
+ * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+ #camera {
+
+    padding: 0;
+    position: fixed;
+    top: 15vh;
+    left: 25vw;
+    width: 47vw;
+    height: 65vh;
+    overflow: hidden;
+    background-color: 0;
+    background-size: cover;
+    background-image: url('http://10.62.39.42:1181/stream.mjpg');
+
+ }
+
+ #timer {
+
+justify-content: center;
+position: fixed;
+top: 0vh;
+right: 10vh;
+font-size: 100;
+font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+ }
