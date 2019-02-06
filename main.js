@@ -42,7 +42,6 @@ function createWindow() {
 	mainWindow.loadURL('http://localhost:8888');
 
 	// Once the python server is ready, load window contents.
-    // TODO: fix this abnomination
 	mainWindow.once('ready-to-show', function() {
 		mainWindow.loadURL('http://localhost:8888');
 		mainWindow.once('ready-to-show', function() {

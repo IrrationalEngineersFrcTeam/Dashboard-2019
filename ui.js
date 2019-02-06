@@ -3,15 +3,17 @@ var ui = {
 camera: Document.getElementById('camera'),
 timer: Document.getElelementById('timer'),
 connetion: Document.getElementById('connectionIndicator'),
+minimap: Document.getElementById('minimap'),
+ctx = canvas.getContext("2d"),
 
 }
 
 
+/* not connecting for some reason, figure out tomorrow */
+NetworkTables.addGlobalListener('key');
 
-NetworkTables.addGlobalListener(onValueChanged, true);
 
-
-switch (netTableVal) {
+switch ('key') {
 
     case ('/SmartDashboard/robotConnection'):
        if (value === true) {
@@ -58,6 +60,19 @@ switch (netTableVal) {
         s = 135;
     }
     break;
+
+    case ('/SmartDashboard/encoderL' , 'SmartDashboard/encoderR' , '/SmartDashboard/NavXYaw'):
+    /*
+    placeholder! needs actual math for translate.
+    ui.ctx.fillRect(0,0,150,75);
+    */
+   /* get the speed of the robot based on the rotation of the encoders and convert to px. */
+    var roboRate = 2 * (Math.PI(1.9125 * (encoderL + encoderR)));
+    /* sets up a vector for the robot and translates to a coordinate point on the canvas. */
+    ui.ctx.fillRect(Math.cos(NavXYaw) * roboRate , Math.sin(NavXYaw) * roboRate , 11 , 10 );
+    ui.ctx.fillStyle = "#FF0000";
+    break;
+
 
 
 }

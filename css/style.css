@@ -8,6 +8,41 @@
     display: none;
 }
 
+body {
+    font: 16px sans-serif;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    color: white;
+    overflow: hidden;
+    background: #7d7d7d;
+}
+
+body > * {
+    padding: 10px;
+    position: fixed;
+    overflow: scroll;
+    background: #232323;
+}
+
+header {
+    width: 26vw;
+    height: 80vh;
+    bottom: 0;
+    right: 0;
+}
+
+article{
+
+    width: 23.4vw;
+    height: 51.4vh;
+    bottom: 0;
+    left: 0;
+
+
+}
+
  #camera {
 
     padding: 0;
@@ -25,11 +60,30 @@
 
  #timer {
 
-justify-content: center;
-position: fixed;
-top: 0vh;
-right: 10vh;
-font-size: 100;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    justify-content: center;
+    position: fixed;
+    top: 0vh;
+    right: 10vh;
+    font-size: 100;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
  }
+
+ #minimap{
+
+    position: fixed;
+    left: 10vh;
+
+ }
+
+#robotImage{
+
+    position: inherit;
+    right: 10vh;
+    bottom: 2vh;
+
+}
+ 
+
+
+
