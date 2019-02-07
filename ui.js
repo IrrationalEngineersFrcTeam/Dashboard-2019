@@ -8,7 +8,7 @@ ctx = canvas.getContext("2d"),
 
 }
 
-src="/networktables/networktables.js"
+
 
 /* not connecting for some reason, figure out tomorrow */
 NetworkTables.addGlobalListener(function(key , value){
