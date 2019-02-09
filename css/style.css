@@ -14,21 +14,21 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    color: white;
+    color: rgb(247, 235, 243);
     overflow: hidden;
-    background: #7d7d7d;
+    background: #615f5f;
 }
 
 body > * {
     padding: 10px;
     position: fixed;
     overflow: scroll;
-    background: #232323;
+    background: #2c2c2c;
 }
 
 header {
     width: 26vw;
-    height: 80vh;
+    height: 70vh;
     bottom: 0;
     right: 0;
 }
@@ -53,13 +53,13 @@ text-combine-upright: inherit;
     padding: 0;
     position: fixed;
     top: 15vh;
-    left: 25vw;
+    left: 23vw;
     width: 47vw;
     height: 65vh;
     overflow: hidden;
     background-color: 0;
     background-size: cover;
-    background-image: url('http://10.62.39.42:1181/stream.mjpg');
+    background-image: url('http://192.168.2.6:1181/stream.mjpg');
 
  }
 
@@ -68,8 +68,9 @@ text-combine-upright: inherit;
     justify-content: center;
     position: fixed;
     top: 0vh;
-    right: 10vh;
-    font-size: 100;
+    right: 1vh;
+    font-size: 120px;
+    
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
  }
