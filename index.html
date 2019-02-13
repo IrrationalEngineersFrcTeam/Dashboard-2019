@@ -1,31 +1,32 @@
+<!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 
-  <script src="/networktables/networktables.js"></script>
-  <script src="ui.js"></script>
-  
 <head>
     <meta charset="utf-8">
+    <title>FRC Dashboard 2019</title>
     <link rel="stylesheet" href="css/style.css">
-    <title>Dashboard2019</title>
+
 </head>
-
-<header><div id = "timer">2:30</div></header>
-
 <body>
-
+<header><div id = "timer">2:30</div></header>
 <div id = "camera"></div>
-<div id = "connectionIndicator">No Robot Connection</div>
-<canvas id = "minimap" width = "162px" height = "324px" style = "border:4px solid #000000;" ></canvas>
+<div id = "connectionIndicator">Robot not Connected</div>
+
 <!--<script>
   var canvas = document.getElementById("minimap");
   var ctx = canvas.getContext("2d");
   ctx.fillStyle = "#FF0000";
   ctx.fillRect(0,0,150,75);
-</script>-->
+  document.getElementById('connectionIndicator').innerHTML = "Check2";
+  <canvas id = "minimap" width = "162px" height = "324px" style = "border:4px solid #000000;" ></canvas>
+</script>
+-->
+<script src="/networktables/networktables.js"></script>
+  <script src="ui.js"></script>
+  
+  
 
 </body>
-
-
 
 </html>
