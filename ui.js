@@ -40,26 +40,32 @@ NetworkTables.addRobotConnectionListener(function(immediateNotify){
 document.getElementById('connectionIndicator').innerHTML = "Check 7";
 
 
-NetworkTables.addGlobalListener(function(key , value){
+NetworkTables.addGlobalListener(function(SmartDashboard , value){
     
-     var key = NetworkTables.getKeys(key);
+     
     document.getElementById('connectionIndicator').innerHTML = "Check 8";
-   
-switch (key) {
 
-    case '/SmartDashboard/robotConnection':
-    document.getElementById('connectionIndicator').innerHTML = "Check 10";
+    
+switch (SmartDashboard) {
+
+ default: document.getElementById('connectionIndicator').innerHTML = "Something went wrong!";
+
+
+    case 'robotConnection':
+    
        if (value === true) {
         document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
        }else{
-        document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected";
+       document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected"; 
        }
+       document.getElementById('connectionIndicator').innerHTML = "Connection is" + value; 
+      
     break;
 
-    default:
-    document.getElementById('connectionIndicator').innerHTML = "Check 9";
-/*
-    case ('/SmartDashboard/timeRunning'):
+    
+    
+
+    case ('timeRunning'):
     var s = 135;
 
     if (timeRunning === true) {
@@ -83,9 +89,6 @@ switch (key) {
 
                 document.getElementById('timer').color = 'red';
 
-                
-                ui.timeWarning.style.color = (s % 2 === 0) ? 'red' : 'transparent';
-
             } else if (s <= 75) {
 
                 document.getElementById('timer').color = 'yellow';
@@ -95,22 +98,26 @@ switch (key) {
     } else {
         s = 135;
     }
+    
     break;
-*/
-/*
-    case ('/SmartDashboard/encoderL' , 'SmartDashboard/encoderR' , '/SmartDashboard/NavXYaw'):
+
+
+    case ('encoderL' , 'encoderR' , 'NavXYaw'):
     /*
     placeholder! needs actual math for translate.
     ui.ctx.fillRect(0,0,150,75);
     */
    /* get the speed of the robot based on the rotation of the encoders and convert to px. */
-   /* var roboRate = 2 * (Math.PI(1.9125 * (encoderL + encoderR)));
+   var roboRate = 2 * (Math.PI(1.9125 * (encoderL + encoderR)));
     /* sets up a vector for the robot and translates to a coordinate point on the canvas. */
-    /*ui.ctx.fillRect(Math.cos(NavXYaw) * roboRate , Math.sin(NavXYaw) * roboRate , 11 , 10 );
+   ui.ctx.fillRect(Math.cos(NavXYaw) * roboRate , Math.sin(NavXYaw) * roboRate , 11 , 10 );
     ui.ctx.fillStyle = "#FF0000";
-    break;*/
+    
+    
+    break;
  
 }
+
 
    
 }, true);
