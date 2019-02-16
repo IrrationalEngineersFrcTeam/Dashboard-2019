@@ -27,7 +27,7 @@ NetworkTables.addRobotConnectionListener(function(immediateNotify){
 
 /* not connecting for some reason, figure out tomorrow */
 
-/*NetworkTables.addKeyListener(function(key, value, isNew){
+/*NetworkTables.addKeyListener(function(key, valueue, isNew){
 
       if (value === '/SmartDashboard/robotConnection'){
 
@@ -40,38 +40,39 @@ NetworkTables.addRobotConnectionListener(function(immediateNotify){
 document.getElementById('connectionIndicator').innerHTML = "Check 7";
 
 
-NetworkTables.addGlobalListener(function(SmartDashboard , value){
+NetworkTables.addGlobalListener(function(NetworkTables , value){
     
      
     document.getElementById('connectionIndicator').innerHTML = "Check 8";
 
     
-switch (SmartDashboard) {
+switch (NetworkTables) {
 
- default: document.getElementById('connectionIndicator').innerHTML = "Something went wrong!";
-
+default: document.getElementById('connectionIndicator').innerHTML = "Something went wrong!";
 
     case 'robotConnection':
-    
-       if (value === true) {
+   
+       if (value) {
         document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
        }else{
        document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected"; 
        }
-       document.getElementById('connectionIndicator').innerHTML = "Connection is" + value; 
+       document.getElementById('connectionIndicator').innerHTML = "Connection is " + NetworkTables.getKeys();
+       /* process.stderr.write(NetworkTables.getKeys()); */
       
     break;
 
     
     
-
+/*
     case ('timeRunning'):
     var s = 135;
 
     if (timeRunning === true) {
         document.getElementById('timer').innerHTML = "#00d500";
 
-        var countdown = setInterval(function () {
+        var countdown = setInter
+        (function () {
             s--; // Subtracts one second
 
             var m = Math.floor(s / 60);
@@ -108,14 +109,14 @@ switch (SmartDashboard) {
     ui.ctx.fillRect(0,0,150,75);
     */
    /* get the speed of the robot based on the rotation of the encoders and convert to px. */
-   var roboRate = 2 * (Math.PI(1.9125 * (encoderL + encoderR)));
+  /* var roboRate = 2 * (Math.PI(1.9125 * (encoderL + encoderR)));
     /* sets up a vector for the robot and translates to a coordinate point on the canvas. */
-   ui.ctx.fillRect(Math.cos(NavXYaw) * roboRate , Math.sin(NavXYaw) * roboRate , 11 , 10 );
+  /* ui.ctx.fillRect(Math.cos(NavXYaw) * roboRate , Math.sin(NavXYaw) * roboRate , 11 , 10 );
     ui.ctx.fillStyle = "#FF0000";
     
     
     break;
- 
+ */
 }
 
 

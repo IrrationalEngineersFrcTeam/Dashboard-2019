@@ -43,6 +43,11 @@ article{
 
 }
 
+#connectionIndicator{
+text-combine-upright: inherit;
+
+}
+
  #camera {
 
     padding: 0;
