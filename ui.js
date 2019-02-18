@@ -46,7 +46,7 @@ NetworkTables.addRobotConnectionListener(function(connected) {
 NetworkTables.addGlobalListener(function(key, value, isNew) {
     console.info("key: " + key + "   value: " + value);
     
-    switch (SmartDashboard) {
+    switch (key) {
     /*case '/SmartDashboard/robotConnection':
         if (value == true) {
             document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";

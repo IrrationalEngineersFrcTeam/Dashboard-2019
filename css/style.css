@@ -59,7 +59,9 @@ text-combine-upright: inherit;
     overflow: hidden;
     background-color: 0;
     background-size: cover;
-    background-image: url('http://192.168.2.6:1181/stream.mjpg');
+    /*background-image: url('http://192.168.2.6:1181/stream.mjpg');*/
+    
+    background-image: url('http://10.62.39.55:1181/stream.mjpg');
 
  }
 
@@ -68,7 +70,7 @@ text-combine-upright: inherit;
     justify-content: center;
     position: fixed;
     top: 0vh;
-    right: 1vh;
+    right: 1vw;
     font-size: 120px;
     
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -78,7 +80,7 @@ text-combine-upright: inherit;
  #minimap{
 
     position: fixed;
-    left: 10vh;
+    left: 0vw;
     top: 10vh;
     background-color: wheat;
 
