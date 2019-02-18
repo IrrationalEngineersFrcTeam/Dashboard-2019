@@ -13,13 +13,8 @@ minimap: document.getElementById('minimap'),
 
 document.getElementById('connectionIndicator').innerHTML = "Check4";
 */
-/*
-NetworkTables.addRobotConnectionListener(function(immediateNotify){
 
-    document.getElementById('connectionIndicator').innerHTML = "Robot Connected";
-},true);
-*/
-/* if (NetworkTables.isWsConnected() === true){
+/* if (NetworkTables.isWsConnected() == true){
 
     document.getElementById('connectionIndicator').innerHTML = "Check6";
 } */
@@ -27,36 +22,41 @@ NetworkTables.addRobotConnectionListener(function(immediateNotify){
 
 /* not connecting for some reason, figure out tomorrow */
 
-/*NetworkTables.addKeyListener(function(key, value, isNew){
-
-      if (value === '/SmartDashboard/robotConnection'){
-
-    document.getElementById('connectionIndicator').innerHTML = "Check7";
-    
+/*NetworkTables.addKeyListener("/SmartDashboard/robotConnection", function(key, value, isNew) {
+    if (key == '/SmartDashboard/robotConnection') {
+        if (value == true) {
+            document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
+        } esle {
+            document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected";
+        }
+    }
 }
-
 }, true); */
     
 document.getElementById('connectionIndicator').innerHTML = "Check 7";
 
+NetworkTables.addRobotConnectionListener(function(connected) {
+    if(connected == true) {
+        document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
+    } else {
+        document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected";
+    }
+}, true);
 
-NetworkTables.addGlobalListener(function(SmartDashboard , value){
-    //document.getElementById('connectionIndicator').innerHTML = "Check 8";
-    console.info("key: " + SmartDashboard + "   value: " + value);
+NetworkTables.addGlobalListener(function(key, value, isNew) {
+    console.info("key: " + key + "   value: " + value);
     
     switch (SmartDashboard) {
-    case '/SmartDashboard/robotConnection':
-        if (value) {
+    /*case '/SmartDashboard/robotConnection':
+        if (value == true) {
             document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
-        }else{
+        } else {
             document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected"; 
         }
-        //document.getElementById('connectionIndicator').innerHTML = "Connection is " + SmartDashboard + " " + value; 
-        break;
+        break;*/
     case ('/SmartDashboard/timeRunning'):
-        var s = 135;
+        var s = 150;
 
-        //if (timeRunning === true) {
         if (value === true) {
             document.getElementById('timer').style.backgroundColor = "#00d500";
 
