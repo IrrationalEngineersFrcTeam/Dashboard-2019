@@ -54,10 +54,16 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
             document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected"; 
         }
         break;*/
-    case ('/SmartDashboard/timeRunning'):
-        var s = 150;
-
-        if (value === true) {
+    /*case ('/SmartDashboard/timeRunning'):*/
+    case '/FMSInfo/FMSControlData':
+        /* When TeleOperated mode is enabled, the value's least significant byte will equal 1.
+         * When Autonomous mode is enabled, the value's least significant byte will equal 3.
+         * Using bit-wise '&' (AND) operator to isolate the first nibble (first 4 bits) to determine
+         * if it equals either 1 or 3.
+         */
+        if((value & 0x0F) == 1 || (value & 0x0F) == 3) {
+            var s = 150;
+            
             document.getElementById('timer').style.backgroundColor = "#00d500";
 
             var countdown = setInterval(function () {
