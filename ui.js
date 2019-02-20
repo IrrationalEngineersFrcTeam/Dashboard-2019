@@ -89,9 +89,9 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
                     clearTimeout(ui.countdown);
                     return;
                 } else if (s <= 30) {
-                    document.getElementById('timer').style.backgroundcolor = 'red';
+                    document.getElementById('timer').style.backgroundcolor = '#FF0000';
                 } else if (s <= 75) {
-                    document.getElementById('timer').style.backgroundcolor = 'yellow';
+                    document.getElementById('timer').style.backgroundcolor = '#FFFF00';
                 }
                 document.getElementById('timer').innerHTML = m + ':' + visualS;
             }, 1000);
