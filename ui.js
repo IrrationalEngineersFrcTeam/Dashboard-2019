@@ -69,8 +69,7 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
         if((value & 0x0F) == 1 || (value & 0x0F) == 3) {
             var s = 150;
 
-            document.getElementById('timer').style.backgroundColor = "#00d500";
-            document.getElementById('timer').style.color = "black";
+            document.getElementById('timer').style.color = "#00d500";
 
             if(ui.countdown != null) {
                 clearTimeout(ui.countdown);
@@ -90,9 +89,9 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
                     clearTimeout(ui.countdown);
                     return;
                 } else if (s <= 30) {
-                    document.getElementById('timer').style.backgroundColor = 'red';
+                    document.getElementById('timer').style.color = 'red';
                 } else if (s <= 75) {
-                    document.getElementById('timer').style.backgroundColor = 'yellow';
+                    document.getElementById('timer').style.color = 'yellow';
                 }
                 document.getElementById('timer').innerHTML = m + ':' + visualS;
             }, 1000);
