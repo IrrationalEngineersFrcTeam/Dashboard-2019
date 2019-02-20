@@ -1,4 +1,9 @@
 document.getElementById('connectionIndicator').innerHTML = "Check5";
+
+var ui = {
+    countdown: null
+}
+
 /*
 var ui = {
 
@@ -63,10 +68,14 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
          */
         if((value & 0x0F) == 1 || (value & 0x0F) == 3) {
             var s = 150;
-            
+
             document.getElementById('timer').style.backgroundColor = "#00d500";
 
-            var countdown = setInterval(function () {
+            if(ui.countdown != null) {
+                clearTimeout(ui.countdown);
+            }
+
+            ui.countdown = setInterval(function () {
                 s--; // Subtracts one second
 
                 var m = Math.floor(s / 60);
@@ -77,7 +86,7 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
 
                 if (s < 0) {
                     // Stop countdown when timer reaches zero
-                    clearTimeout(countdown);
+                    clearTimeout(ui.countdown);
                     return;
                 } else if (s <= 30) {
                     document.getElementById('timer').style.backgroundcolor = 'red';
@@ -87,7 +96,9 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
                 document.getElementById('timer').innerHTML = m + ':' + visualS;
             }, 1000);
         } else {
-            s = 135;
+            if(ui.countdown != null) {
+                clearTimeout(ui.countdown);
+            }
         }
         break;
     case ('/SmartDashboard/encoderL' , '/SmartDashboard/encoderR' , '/SmartDashboard/NavXYaw'):
