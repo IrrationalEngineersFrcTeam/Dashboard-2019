@@ -14,21 +14,21 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    color: white;
+    color: rgb(247, 235, 243);
     overflow: hidden;
-    background: #7d7d7d;
+    background: #615f5f;
 }
 
 body > * {
     padding: 10px;
     position: fixed;
     overflow: scroll;
-    background: #232323;
+    background: #2c2c2c;
 }
 
 header {
     width: 26vw;
-    height: 80vh;
+    height: 70vh;
     bottom: 0;
     right: 0;
 }
@@ -48,18 +48,27 @@ text-combine-upright: inherit;
 
 }
 
+#commandIndicator{
+    right: 0;
+    top: 40vh;
+}
+
  #camera {
 
     padding: 0;
     position: fixed;
     top: 15vh;
-    left: 25vw;
+    left: 23vw;
     width: 47vw;
     height: 65vh;
     overflow: hidden;
     background-color: 0;
     background-size: cover;
-    background-image: url('http://10.62.39.42:1181/stream.mjpg');
+    border-style: inset;
+    border-width: 5px;
+    border-color: darkorange;
+    
+    background-image: url('http://10.62.39.12:1181/stream.mjpg');
 
  }
 
@@ -68,28 +77,35 @@ text-combine-upright: inherit;
     justify-content: center;
     position: fixed;
     top: 0vh;
-    right: 10vh;
-    font-size: 100;
+    right: 1vw;
+    font-size: 120px;
+    -webkit-text-fill-color: lime;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
 
  }
+ #rotationDisplay{
+
+    
+    bottom: 10px;
+    right: 1000px;
+
+
+}
 
  #minimap{
 
     position: fixed;
-    left: 10vh;
+    left: 0vw;
     top: 10vh;
     background-color: wheat;
+    border-style: inset;
+    border-width: 5px;
+    border-color: darkorange;
 
  }
 
-#robotImage{
 
-    position: inherit;
-    right: 10vh;
-    bottom: 2vh;
-
-}
  
 
 

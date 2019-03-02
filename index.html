@@ -11,17 +11,49 @@
 <body>
 <header><div id = "timer">2:30</div></header>
 <div id = "camera"></div>
-<div id = "connectionIndicator">No Robot Connected</div>
- <canvas id = "minimap" width = "162px" height = "324px" style = "border:4px solid #000000;" ></canvas>
+<div id = "connectionIndicator">Unkown State</div>
+<div id = "commandIndicator">Unkown State</div>
+
+<svg id="rotationDisplay" width="320" height="340">
+
+    <g>
+
+            <circle cx="140" cy="120" r="110" stroke="darkorange" fill="#232323" stroke-width="2"  />
+
+    </g>
+
+    <g id="rotationDial">
+
+       <rect  x="84" y="55" width="110" height="136" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="78" y="114" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="194" y="114" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="78" y="65" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="78" y="165" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="194" y="65" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="194" y="165" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect x="100" y="55" width="78" height="4" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect x="96" y="112" width="84" height="70" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="96" y="65" width="4" height="30" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect  x="176" y="65" width="4" height="30" stroke="darkorange" stroke-width="1" fill="#232323" />
+
+
+    </g>
+
+</svg>
+<!--<div id = "visionIndicator">Unkown State</div>-->
+ <canvas id = "minimap" width = "162px" height = "324px" ></canvas>
 <script>
   var minimap = document.getElementById("minimap");
-  var ctx = minimap.getContext("2d");
-  ctx.moveTo(0, 162);
-  ctx.lineTo(162, 162);
-  ctx.stroke();
-  ctx.strokeWidth(10);
-  ctx = strokeColor(red);
- 
+  var midline = minimap.getContext("2d");
+  var cargoShip = minimap.getContext("2d");
+  cargoShip.fillRect(81, 162, 20, 40);
+  cargoShip.strokeStyle = "red";
+  cargoShip.fillRect = "transparent";
+  midline.moveTo(0, 162);
+  midline.lineTo(162, 162);
+  midline.lineWidth = 1;
+  midline.strokeStyle = "black";
+  midline.stroke();
 </script>
 
 <script src="/networktables/networktables.js"></script>

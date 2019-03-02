@@ -1,54 +1,49 @@
-document.getElementById('connectionIndicator').innerHTML = "Check5";
-/*
-var ui = {
-camera: document.getElementById('camera'),
-timer: document.getElelementById('timer'),
-connetion: document.getElementById('connectionIndicator'),
-minimap: document.getElementById('minimap'),
-};
-document.getElementById('connectionIndicator').innerHTML = "Check4";
-*/
-/*
-NetworkTables.addRobotConnectionListener(function(immediateNotify){
-    document.getElementById('connectionIndicator').innerHTML = "Robot Connected";
-},true);
-*/
-/* if (NetworkTables.isWsConnected() === true){
-    document.getElementById('connectionIndicator').innerHTML = "Check6";
-} */
 
 
-/* not connecting for some reason, figure out tomorrow */
-
-/*NetworkTables.addKeyListener(function(key, value, isNew){
-      if (value === '/SmartDashboard/robotConnection'){
-    document.getElementById('connectionIndicator').innerHTML = "Check7";
+document.getElementById('connectionIndicator').innerHTML = "Something Went Wrong!";
     
+ 
+function robotRotCalc(){
+
+    document.getElementById('rotationDial') = navY ;
+    robotAngle = Math.floor(navY);
+    if (navY < 0) { // Corrects for negative values
+        navY += 360;
+    }
+    ui.document.getElementById('rotationDial').indicator.style.transform = ('rotate(' + robotAngle + 'deg)');
 }
-}, true); */
-    
 document.getElementById('connectionIndicator').innerHTML = "Check 7";
 
+NetworkTables.addRobotConnectionListener(function(connected) {
+    if(connected == true) {
+        document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
+    } else {
+        document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected";
+    }
+}, true);
 
-NetworkTables.addGlobalListener(function(SmartDashboard , value){
-    //document.getElementById('connectionIndicator').innerHTML = "Check 8";
-    console.info("key: " + SmartDashboard + "   value: " + value);
+NetworkTables.addGlobalListener(function(key, value, isNew) {
+    console.info("key: " + key + "   value: " + value);
     
-    switch (SmartDashboard) {
-    case '/SmartDashboard/robotConnection':
-        if (value) {
+    switch (key) {
+    /*case '/SmartDashboard/robotConnection':
+        if (value == true) {
             document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
-        }else{
+        } else {
             document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected"; 
         }
-        //document.getElementById('connectionIndicator').innerHTML = "Connection is " + SmartDashboard + " " + value; 
-        break;
-    case ('/SmartDashboard/timeRunning'):
-        var s = 135;
-
-        //if (timeRunning === true) {
-        if (value === true) {
-            document.getElementById('timer').style.backgroundColor = "#00d500";
+        break;*/
+    /*case ('/SmartDashboard/timeRunning'):*/
+    case '/FMSInfo/FMSControlData':
+        /* When TeleOperated mode is enabled, the value's least significant byte will equal 1.
+         * When Autonomous mode is enabled, the value's least significant byte will equal 3.
+         * Using bit-wise '&' (AND) operator to isolate the first nibble (first 4 bits) to determine
+         * if it equals either 1 or 3.
+         */
+        if((value & 0x0F) == 1 || (value & 0x0F) == 3) {
+            var s = 150;
+            
+            document.getElementById('timer').style.webkitTextFillColor = "lime";
 
             var countdown = setInterval(function () {
                 s--; // Subtracts one second
@@ -64,9 +59,9 @@ NetworkTables.addGlobalListener(function(SmartDashboard , value){
                     clearTimeout(countdown);
                     return;
                 } else if (s <= 30) {
-                    document.getElementById('timer').style.backgroundcolor = 'red';
+                    document.getElementById('timer').style.webkitTextFillColor = 'red';
                 } else if (s <= 75) {
-                    document.getElementById('timer').style.backgroundcolor = 'yellow';
+                    document.getElementById('timer').style.webkitTextFillColor = 'yellow';
                 }
                 document.getElementById('timer').innerHTML = m + ':' + visualS;
             }, 1000);
@@ -74,23 +69,47 @@ NetworkTables.addGlobalListener(function(SmartDashboard , value){
             s = 135;
         }
         break;
-    case ('/SmartDashboard/encoderL' , '/SmartDashboard/encoderR' , '/SmartDashboard/NavXYaw'):
-        /*
-        placeholder! needs actual math for translate.
-        ui.ctx.fillRect(0,0,150,75);
-        */
-        /* get the speed of the robot based on the rotation of the encoders and convert to px. */
-        var roboRate = 2 * (Math.PI(1.9125 * (encoderL + encoderR)));
-        /* sets up a vector for the robot and translates to a coordinate point on the canvas. */
-        ui.ctx.fillRect(Math.cos(NavXYaw) * roboRate , Math.sin(NavXYaw) * roboRate , 11 , 10 );
-        ui.ctx.fillStyle = "#FF0000";
-        break;
-    default:
-        //document.getElementById('connectionIndicator').innerHTML = "Something went wrong!";
+    case '/SmartDashboard/encoderL':
+    
+         eL = value;
+       
+       minimapCalc();
+    break;
+
+    case '/SmartDashboard/encoderR':
+        eR = value;
+        minimapCalc();
+    break;
+
+    case '/SmartDashboard/NavXYaw':
+         navY = value;
+        minimapCalc();
+        robotRotCalc();
         
-        //document.getElementById('connectionIndicator').innerHTML = "Connection is " + SmartDashboard + " " + value;
+    break;
+
+    default:
+      //  document.getElementById('connectionIndicator').innerHTML = "Something went wrong!";
+        
         break;
     }
 }, true);
+var minimap = {
+ minimapCalc: function(){ 
+    document.getElementById('commandIndicator').innerHTML = eL;
+    var eL = 0;
+    var eR = 0;
+    var navY = 0;
+    /* get the speed of the robot based on the rotation of the encoders and convert to px. */
+    var roboRate = 2 * (Math.PI(1.9125 * (eL + eR)));
+    
+    /* sets up a vector for the robot and translates to a coordinate point on the canvas. */
+    var minimap = document.getElementById("minimap");
+    var minimapIndicator = minimap.getContext("2d");
+    minimapIndicator.beginPath();
+    minimapIndicator.arc(45 + (Math.cos(navY) * roboRate), 50 + (Math.sin(navY) * roboRate), 5, 0, 2 * Math.PI);
+    minimapIndicator.stroke();
+    /* ui.ctx.fillRect(Math.cos(navY) * roboRate , Math.sin(navY) * roboRate , 11 , 10 ); */
+}
 
-
+}
