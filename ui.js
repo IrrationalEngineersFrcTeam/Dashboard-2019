@@ -1,3 +1,14 @@
+<<<<<<< HEAD
+=======
+document.getElementById('connectionIndicator').innerHTML = "Check5";
+
+var ui = {
+    countdown: null
+}
+
+/*
+var ui = {
+>>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
 
 
 document.getElementById('connectionIndicator').innerHTML = "Something Went Wrong!";
@@ -42,10 +53,19 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
          */
         if((value & 0x0F) == 1 || (value & 0x0F) == 3) {
             var s = 150;
+<<<<<<< HEAD
             
             document.getElementById('timer').style.webkitTextFillColor = "lime";
+=======
+>>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
 
-            var countdown = setInterval(function () {
+            document.getElementById('timer').style.color = "#00d500";
+
+            if(ui.countdown != null) {
+                clearTimeout(ui.countdown);
+            }
+
+            ui.countdown = setInterval(function () {
                 s--; // Subtracts one second
 
                 var m = Math.floor(s / 60);
@@ -56,17 +76,25 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
 
                 if (s < 0) {
                     // Stop countdown when timer reaches zero
-                    clearTimeout(countdown);
+                    clearTimeout(ui.countdown);
                     return;
                 } else if (s <= 30) {
+<<<<<<< HEAD
                     document.getElementById('timer').style.webkitTextFillColor = 'red';
                 } else if (s <= 75) {
                     document.getElementById('timer').style.webkitTextFillColor = 'yellow';
+=======
+                    document.getElementById('timer').style.color = 'red';
+                } else if (s <= 75) {
+                    document.getElementById('timer').style.color = 'yellow';
+>>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
                 }
                 document.getElementById('timer').innerHTML = m + ':' + visualS;
             }, 1000);
         } else {
-            s = 135;
+            if(ui.countdown != null) {
+                clearTimeout(ui.countdown);
+            }
         }
         break;
     case '/SmartDashboard/encoderL':

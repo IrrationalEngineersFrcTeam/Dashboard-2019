@@ -6,10 +6,9 @@
     <meta charset="utf-8">
     <title>FRC Dashboard 2019</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
-<header><div id = "timer">2:30</div></header>
+<header id="timer">2:30</header>
 <div id = "camera"></div>
 <div id = "connectionIndicator">Unkown State</div>
 <div id = "commandIndicator">Unkown State</div>
@@ -44,6 +43,7 @@
  <canvas id = "minimap" width = "162px" height = "324px" ></canvas>
 <script>
   var minimap = document.getElementById("minimap");
+<<<<<<< HEAD
   var midline = minimap.getContext("2d");
   var cargoShip = minimap.getContext("2d");
   cargoShip.fillRect(81, 162, 20, 40);
@@ -54,13 +54,17 @@
   midline.lineWidth = 1;
   midline.strokeStyle = "black";
   midline.stroke();
+=======
+  var ctx = minimap.getContext("2d");
+  ctx.moveTo(0, 162);
+  ctx.lineTo(162, 162);
+  ctx.lineWidth = 1;
+  ctx.strokeStyle = "red";
+  ctx.stroke();
+>>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
 </script>
 
 <script src="/networktables/networktables.js"></script>
-  <script src="ui.js"></script>
-  
-  
-
+<script src="ui.js"></script>
 </body>
-
 </html>
