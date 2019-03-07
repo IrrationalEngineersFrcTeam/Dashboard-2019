@@ -11,13 +11,22 @@
 <header id="timer">2:30</header>
 <div id = "camera"></div>
 <div id = "connectionIndicator">Unkown State</div>
-<div id = "commandIndicator">Unkown State</div>
+<div id = "ID1">Right = Unkown State</div>
+<div id = "ID2">Left = Unkown State</div>
+<div id = "ID3">Yaw = Unkown State</div>
+<canvas id = "minimap" width = "162px" height = "324px" ></canvas>
+ 
+<svg id="miniBot" width="50" height="50">
+<g>
+  <circle cx="12.5" cy="12.5" r="5" stroke="red" fill="red" stroke-width="2"/>
+</g>
+</svg>
 
-<svg id="rotationDisplay" width="320" height="340">
+<svg id="rotationDisplay" width="290" height="290">
 
     <g>
 
-            <circle cx="140" cy="120" r="110" stroke="darkorange" fill="#232323" stroke-width="2"  />
+            <circle cx="140" cy="125" r="110" stroke="darkorange" fill="#232323" stroke-width="2"  />
 
     </g>
 
@@ -30,39 +39,41 @@
         <rect  x="78" y="165" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
         <rect  x="194" y="65" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
         <rect  x="194" y="165" width="6" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
-        <rect x="100" y="55" width="78" height="4" stroke="darkorange" stroke-width="1" fill="#232323" />
-        <rect x="96" y="112" width="84" height="70" stroke="darkorange" stroke-width="1" fill="#232323" />
-        <rect  x="96" y="65" width="4" height="30" stroke="darkorange" stroke-width="1" fill="#232323" />
-        <rect  x="176" y="65" width="4" height="30" stroke="darkorange" stroke-width="1" fill="#232323" />
+        <rect x="100" y="55" width="78" height="20" stroke="darkorange" stroke-width="1" fill="#232323" />
+        
 
 
     </g>
 
 </svg>
-<!--<div id = "visionIndicator">Unkown State</div>-->
- <canvas id = "minimap" width = "162px" height = "324px" ></canvas>
+
 <script>
   var minimap = document.getElementById("minimap");
-<<<<<<< HEAD
   var midline = minimap.getContext("2d");
-  var cargoShip = minimap.getContext("2d");
-  cargoShip.fillRect(81, 162, 20, 40);
-  cargoShip.strokeStyle = "red";
-  cargoShip.fillRect = "transparent";
+  var hab1 = minimap.getContext("2d");
+  var hab2 = minimap.getContext("2d");
+  
   midline.moveTo(0, 162);
   midline.lineTo(162, 162);
   midline.lineWidth = 1;
   midline.strokeStyle = "black";
   midline.stroke();
-=======
-  var ctx = minimap.getContext("2d");
-  ctx.moveTo(0, 162);
-  ctx.lineTo(162, 162);
-  ctx.lineWidth = 1;
-  ctx.strokeStyle = "red";
-  ctx.stroke();
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
+
+  hab1.moveTo(49, 24);
+  hab1.lineTo(113, 24);
+  hab1.lineWidth = 1;
+  hab1.strokeStyle = "black";
+  hab1.stroke();
+
+  hab1.moveTo(49, 300);
+  hab1.lineTo(113, 300);
+  hab1.lineWidth = 1;
+  hab1.strokeStyle = "black";
+  hab1.stroke();
+
+  
 </script>
+
 
 <script src="/networktables/networktables.js"></script>
 <script src="ui.js"></script>

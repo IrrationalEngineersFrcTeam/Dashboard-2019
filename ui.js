@@ -1,20 +1,10 @@
-<<<<<<< HEAD
-=======
-document.getElementById('connectionIndicator').innerHTML = "Check5";
-
-var ui = {
-    countdown: null
-}
-
-/*
-var ui = {
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
 
 
 document.getElementById('connectionIndicator').innerHTML = "Something Went Wrong!";
     
+document.getElementById('rotationDial').style.transform = ('rotate(' + 0 + 'deg)');
  
-function robotRotCalc(){
+/*function robotRotCalc(){
 
     document.getElementById('rotationDial') = navY ;
     robotAngle = Math.floor(navY);
@@ -22,7 +12,7 @@ function robotRotCalc(){
         navY += 360;
     }
     ui.document.getElementById('rotationDial').indicator.style.transform = ('rotate(' + robotAngle + 'deg)');
-}
+}*/
 document.getElementById('connectionIndicator').innerHTML = "Check 7";
 
 NetworkTables.addRobotConnectionListener(function(connected) {
@@ -53,19 +43,10 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
          */
         if((value & 0x0F) == 1 || (value & 0x0F) == 3) {
             var s = 150;
-<<<<<<< HEAD
             
             document.getElementById('timer').style.webkitTextFillColor = "lime";
-=======
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
 
-            document.getElementById('timer').style.color = "#00d500";
-
-            if(ui.countdown != null) {
-                clearTimeout(ui.countdown);
-            }
-
-            ui.countdown = setInterval(function () {
+            var countdown = setInterval(function () {
                 s--; // Subtracts one second
 
                 var m = Math.floor(s / 60);
@@ -76,44 +57,42 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
 
                 if (s < 0) {
                     // Stop countdown when timer reaches zero
-                    clearTimeout(ui.countdown);
+                    clearTimeout(countdown);
                     return;
                 } else if (s <= 30) {
-<<<<<<< HEAD
                     document.getElementById('timer').style.webkitTextFillColor = 'red';
                 } else if (s <= 75) {
                     document.getElementById('timer').style.webkitTextFillColor = 'yellow';
-=======
-                    document.getElementById('timer').style.color = 'red';
-                } else if (s <= 75) {
-                    document.getElementById('timer').style.color = 'yellow';
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
                 }
                 document.getElementById('timer').innerHTML = m + ':' + visualS;
             }, 1000);
         } else {
-            if(ui.countdown != null) {
-                clearTimeout(ui.countdown);
-            }
+            s = 135;
         }
         break;
     case '/SmartDashboard/encoderL':
-    
-         eL = value;
+       eL = value;
+       document.getElementById('ID1') = 'Left =' + eL;
        
-       minimapCalc();
     break;
 
     case '/SmartDashboard/encoderR':
         eR = value;
-        minimapCalc();
+        document.getElementById('ID2') = 'Right =' + eR;
+        
     break;
 
     case '/SmartDashboard/NavXYaw':
          navY = value;
-        minimapCalc();
-        robotRotCalc();
+        // document.getElementById('rotationDial').style.transform = ('rotate(' + navY + 'deg)');
+         document.getElementById('ID3').innerHTML = 'Yaw =' + navY + 'degrees';
         
+        robotAngle = Math.floor(navY);
+        if (navY < 0) { // Corrects for negative values
+            navY += 360;
+        }
+        document.getElementById('rotationDial').style.transform = ('rotate(' + robotAngle + 'deg)');
+
     break;
 
     default:
@@ -122,9 +101,10 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
         break;
     }
 }, true);
+
 var minimap = {
  minimapCalc: function(){ 
-    document.getElementById('commandIndicator').innerHTML = eL;
+    document.getElementById('ID1').innerHTML = eL;
     var eL = 0;
     var eR = 0;
     var navY = 0;

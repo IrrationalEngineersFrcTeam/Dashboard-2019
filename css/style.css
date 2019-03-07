@@ -4,7 +4,6 @@
     margin: 0;
     padding: 0;
 }
-
 ::-webkit-scrollbar {
     display: none;
 }
@@ -28,35 +27,46 @@ body > * {
 }
 
 header {
-    width: 28vw;
-    height: 40vh;
+    width: 26vw;
+    height: 70vh;
     bottom: 0;
     right: 0;
 }
 
-article {
+article{
+
     width: 23.4vw;
     height: 51.4vh;
     bottom: 0;
     left: 0;
+
+
 }
 
 #connectionIndicator{
-    text-combine-upright: inherit;
-    width: 188px;
+text-combine-upright: inherit;
+
 }
 
-<<<<<<< HEAD
-#commandIndicator{
+#ID1{
+    right: 0;
+    top: 30vh;
+}
+
+#ID2{
     right: 0;
     top: 40vh;
+
+}
+
+#ID3{
+    right: 0;
+    top: 50vh;
+
 }
 
  #camera {
 
-=======
-#camera {
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
     padding: 0;
     position: fixed;
     top: 15vh;
@@ -70,15 +80,12 @@ article {
     border-width: 5px;
     border-color: darkorange;
     
-<<<<<<< HEAD
     background-image: url('http://10.62.39.12:1181/stream.mjpg');
 
-=======
-    background-image: url('http://10.62.39.55:1181/stream.mjpg');
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
  }
 
  #timer {
+
     justify-content: center;
     position: fixed;
     top: 0vh;
@@ -86,44 +93,46 @@ article {
     font-size: 120px;
     -webkit-text-fill-color: lime;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-<<<<<<< HEAD
     
 
-=======
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
  }
- #rotationDisplay{
 
-    
-    bottom: 10px;
-    right: 1000px;
+ #miniBot{
 
+    background-color: transparent;
+    transform-origin: center;
+    left: 100px;
+    top: 410px;
 
-}
+ }
 
- #minimap {
+ #minimap{
+
     position: fixed;
-    left: 0vw;
-    top: 10vh;
+    left: 50px;
+    top: 100px;
     background-color: wheat;
-<<<<<<< HEAD
     border-style: inset;
     border-width: 5px;
     border-color: darkorange;
 
  }
 
+#rotationDisplay{
 
+    
+    bottom: 10px;
+    left: 997px;
+    transform-origin: center;
+
+}
+
+#rotationDial{
+
+transform-origin: center;
+
+}
  
 
 
 
-=======
- }
-
-#robotImage {
-    position: inherit;
-    right: 10vh;
-    bottom: 2vh;
-}
->>>>>>> 198bb17e61cd83c22e19a0c7d51df797c247a2bf
