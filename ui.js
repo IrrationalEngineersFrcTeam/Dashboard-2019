@@ -3,7 +3,11 @@
 document.getElementById('connectionIndicator').innerHTML = "Something Went Wrong!";
     
 document.getElementById('rotationDial').style.transform = ('rotate(' + 0 + 'deg)');
- 
+
+
+ var navY = 0
+ var eR = 0
+ var eL = 0
 /*function robotRotCalc(){
 
     document.getElementById('rotationDial') = navY ;
@@ -18,8 +22,10 @@ document.getElementById('connectionIndicator').innerHTML = "Check 7";
 NetworkTables.addRobotConnectionListener(function(connected) {
     if(connected == true) {
         document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
+        document.getElementById('connectionIndicator').style.webkitTextFillColor = "lime";
     } else {
         document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected";
+        document.getElementById('connectionIndicator').style.webkitTextFillColor = "red";
     }
 }, true);
 
@@ -71,20 +77,23 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
         }
         break;
     case '/SmartDashboard/encoderL':
-       eL = value;
+     eL = value;
+       minimap.minimapCalc();
        document.getElementById('ID1') = 'Left =' + eL;
        
     break;
 
     case '/SmartDashboard/encoderR':
-        eR = value;
+         eR = value;
+        minimap.minimapCalc();
         document.getElementById('ID2') = 'Right =' + eR;
+        
         
     break;
 
     case '/SmartDashboard/NavXYaw':
+        
          navY = value;
-        // document.getElementById('rotationDial').style.transform = ('rotate(' + navY + 'deg)');
          document.getElementById('ID3').innerHTML = 'Yaw =' + navY + 'degrees';
         
         robotAngle = Math.floor(navY);
@@ -93,6 +102,7 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
         }
         document.getElementById('rotationDial').style.transform = ('rotate(' + robotAngle + 'deg)');
 
+        minimap.minimapCalc();
     break;
 
     default:
@@ -101,7 +111,7 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
         break;
     }
 }, true);
-
+/*
 var minimap = {
  minimapCalc: function(){ 
     document.getElementById('ID1').innerHTML = eL;
@@ -109,15 +119,23 @@ var minimap = {
     var eR = 0;
     var navY = 0;
     /* get the speed of the robot based on the rotation of the encoders and convert to px. */
-    var roboRate = 2 * (Math.PI(1.9125 * (eL + eR)));
+   // var roboRate = 2 * (Math.PI(1.9125 * (eL + eR)));
     
     /* sets up a vector for the robot and translates to a coordinate point on the canvas. */
-    var minimap = document.getElementById("minimap");
+   /* var minimap = document.getElementById("minimap");
     var minimapIndicator = minimap.getContext("2d");
     minimapIndicator.beginPath();
     minimapIndicator.arc(45 + (Math.cos(navY) * roboRate), 50 + (Math.sin(navY) * roboRate), 5, 0, 2 * Math.PI);
     minimapIndicator.stroke();
     /* ui.ctx.fillRect(Math.cos(navY) * roboRate , Math.sin(navY) * roboRate , 11 , 10 ); */
-}
+//}
 
+var minimap = {
+    minimapCalc: function(){ 
+        document.getElementById('test').innerHTML = "the function is being called at least" +  roboRate;
+        var roboRate = 2 * (Math.PI(1.9125 * (eL + eR)));
+        
+        document.getElementById('miniBot').translate((Math.cos(navY) * roboRate), (Math.sin(navY) * roboRate));
+
+    }
 }
