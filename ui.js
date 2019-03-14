@@ -3,20 +3,13 @@
 document.getElementById('connectionIndicator').innerHTML = "Something Went Wrong!";
     
 document.getElementById('rotationDial').style.transform = ('rotate(' + 0 + 'deg)');
+var ui = {
 
+  navY = 0,
+  eR = 0,
+  eL = 0,
 
- var navY = 0
- var eR = 0
- var eL = 0
-/*function robotRotCalc(){
-
-    document.getElementById('rotationDial') = navY ;
-    robotAngle = Math.floor(navY);
-    if (navY < 0) { // Corrects for negative values
-        navY += 360;
-    }
-    ui.document.getElementById('rotationDial').indicator.style.transform = ('rotate(' + robotAngle + 'deg)');
-}*/
+};
 document.getElementById('connectionIndicator').innerHTML = "Check 7";
 
 NetworkTables.addRobotConnectionListener(function(connected) {
@@ -33,14 +26,7 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
     console.info("key: " + key + "   value: " + value);
     
     switch (key) {
-    /*case '/SmartDashboard/robotConnection':
-        if (value == true) {
-            document.getElementById('connectionIndicator').innerHTML = "Robot is Connected";
-        } else {
-            document.getElementById('connectionIndicator').innerHTML = "Robot is not Connected"; 
-        }
-        break;*/
-    /*case ('/SmartDashboard/timeRunning'):*/
+   
     case '/FMSInfo/FMSControlData':
         /* When TeleOperated mode is enabled, the value's least significant byte will equal 1.
          * When Autonomous mode is enabled, the value's least significant byte will equal 3.
@@ -77,14 +63,14 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
         }
         break;
     case '/SmartDashboard/encoderL':
-     eL = value;
+     ui.eL = value;
        minimap.minimapCalc();
        document.getElementById('ID1') = 'Left =' + eL;
        
     break;
 
     case '/SmartDashboard/encoderR':
-         eR = value;
+         ui.eR = value;
         minimap.minimapCalc();
         document.getElementById('ID2') = 'Right =' + eR;
         
@@ -93,7 +79,7 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
 
     case '/SmartDashboard/NavXYaw':
         
-         navY = value;
+         ui.navY = value;
          document.getElementById('ID3').innerHTML = 'Yaw =' + navY + 'degrees';
         
         robotAngle = Math.floor(navY);
@@ -111,7 +97,20 @@ NetworkTables.addGlobalListener(function(key, value, isNew) {
         break;
     }
 }, true);
+
+
+var minimap = {
+    minimapCalc: function(){ 
+        document.getElementById('test').innerHTML = "Minimap Error!" +  roboRate;
+        var roboRate = 2 * (Math.PI(1.9125 * (ui.eL + ui.eR)));
+        
+        document.getElementById('miniBot').translate((Math.cos(ui.navY) * roboRate), (Math.sin(ui.navY) * roboRate));
+
+    }
+};
+
 /*
+Alternate Minimap Calc, Do not delete!
 var minimap = {
  minimapCalc: function(){ 
     document.getElementById('ID1').innerHTML = eL;
@@ -129,13 +128,3 @@ var minimap = {
     minimapIndicator.stroke();
     /* ui.ctx.fillRect(Math.cos(navY) * roboRate , Math.sin(navY) * roboRate , 11 , 10 ); */
 //}
-
-var minimap = {
-    minimapCalc: function(){ 
-        document.getElementById('test').innerHTML = "the function is being called at least" +  roboRate;
-        var roboRate = 2 * (Math.PI(1.9125 * (eL + eR)));
-        
-        document.getElementById('miniBot').translate((Math.cos(navY) * roboRate), (Math.sin(navY) * roboRate));
-
-    }
-}
